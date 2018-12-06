@@ -1,7 +1,7 @@
 # ngSnippetCode
 Fragmenty kodu do oceny.
 
-##Facets
+## Facets
 Tutaj przerzuciłem kodktóry mi pobierał facety korzystając z API. 
 
 Korzystam tu z dataService, która zaciąga sobie dane i dodaje je do konkretnych pól wyrzucanych
