@@ -1,0 +1,120 @@
+<div class="left-content">
+  <div class="header">
+    <div (click)="showAuthors()">
+      <fa-icon [icon]="faListAlt" size="2x"></fa-icon>
+      <p>Autor</p>
+      <fa-icon [icon]="faCaretDown" size="1x" class="toggle open" *ngIf="!openAuthors"></fa-icon>
+      <fa-icon [icon]="faCaretUp" size="1x" class="toggle close" *ngIf="openAuthors"></fa-icon>
+    </div>
+    <div class="result">
+      <ul class="fa-ul facet" *ngIf="openAuthors">
+        <li (click)="letsCheck(author.key)" *ngFor="let author of authorsFacet | keyvalue">
+        <span class="fa-li">
+          <fa-icon [icon]="faCheckSquare" *ngIf="stringContain(author.key)" class="checked"></fa-icon>
+          <fa-icon [icon]="faSquare" *ngIf="!stringContain(author.key)" class="not-checked"></fa-icon>
+        </span> {{ author.value.displayName }} ({{author.value.count}})
+        </li>
+      </ul>
+      <div class="show-more" [translate]="'show-more'" *ngIf="openAuthors && !moreAuthors"
+           (click)="showAuthorsFacet(authors.length, authors)"></div>
+      <div class="show-more" [translate]="'show-less'" *ngIf="openAuthors && moreAuthors"
+           (click)="showAuthorsFacet(4, authors)"></div>
+    </div>
+  </div>
+
+  <div class="header">
+    <div (click)="showCategories()">
+      <fa-icon [icon]="faWindowRestore" size="2x"></fa-icon>
+      <p>Kategoria</p>
+      <fa-icon [icon]="faCaretDown" size="1x" class="toggle open" *ngIf="!openCategories"></fa-icon>
+      <fa-icon [icon]="faCaretUp" size="1x" class="toggle close" *ngIf="openCategories"></fa-icon>
+    </div>
+    <div class="result">
+      <ul class="fa-ul facet" *ngIf="openCategories">
+        <li (click)="letsCheck(category.key)" *ngFor="let category of categoryFacet | keyvalue">
+        <span class="fa-li">
+          <fa-icon [icon]="faCheckSquare" *ngIf="stringContain(category.key)" class="checked"></fa-icon>
+          <fa-icon [icon]="faSquare" *ngIf="!stringContain(category.key)" class="not-checked"></fa-icon>
+        </span> {{ category.value.displayName }} ({{category.value.count}})
+        </li>
+      </ul>
+      <div class="show-more" [translate]="'show-more'" *ngIf="openCategories && !moreCategories"
+           (click)="showCategoriesFacet(category.length, category)"></div>
+      <div class="show-more" [translate]="'show-less'" *ngIf="openCategories && moreCategories"
+           (click)="showCategoriesFacet(4, category)"></div>
+    </div>
+  </div>
+
+  <div class="header">
+    <div (click)="showFiles()">
+      <fa-icon [icon]="faFile" size="2x"></fa-icon>
+      <p>Typy plików</p>
+      <fa-icon [icon]="faCaretDown" size="1x" class="toggle open" *ngIf="!openFiles"></fa-icon>
+      <fa-icon [icon]="faCaretUp" size="1x" class="toggle close" *ngIf="openFiles"></fa-icon>
+    </div>
+    <div class="result">
+      <ul class="fa-ul facet" *ngIf="openFiles">
+        <li (click)="letsCheck(fileType.key)" *ngFor="let fileType of fileTypeFacets | keyvalue">
+        <span class="fa-li">
+          <fa-icon [icon]="faCheckSquare" *ngIf="stringContain(fileType.key)" class="checked"></fa-icon>
+          <fa-icon [icon]="faSquare" *ngIf="!stringContain(fileType.key)" class="not-checked"></fa-icon>
+        </span> {{ fileType.value.displayName }} ({{fileType.value.count}})
+        </li>
+      </ul>
+      <div class="show-more" [translate]="'show-more'" *ngIf="openFiles && !moreFiles"
+           (click)="showFilesFacet(fileType.length, fileType)"></div>
+      <div class="show-more" [translate]="'show-less'" *ngIf="openFiles && moreFiles"
+           (click)="showFilesFacet(4, fileType)"></div>
+    </div>
+  </div>
+
+  <div class="header">
+    <div (click)="showDates()">
+      <fa-icon [icon]="faCalendarAlt" size="2x"></fa-icon>
+      <p>Data publikacji</p>
+      <fa-icon [icon]="faCaretDown" size="1x" class="toggle open" *ngIf="!openDates"></fa-icon>
+      <fa-icon [icon]="faCaretUp" size="1x" class="toggle close" *ngIf="openDates"></fa-icon>
+    </div>
+    <div class="result">
+      <ul class="fa-ul facet" *ngIf="openDates">
+        <li (click)="letsCheck(date.key)" *ngFor="let date of dateFacet | keyvalue">
+        <span class="fa-li">
+          <fa-icon [icon]="faCheckSquare" *ngIf="stringContain(date.key)" class="checked"></fa-icon>
+          <fa-icon [icon]="faSquare" *ngIf="!stringContain(date.key)" class="not-checked"></fa-icon>
+        </span> {{ date.value.displayName }} ({{date.value.count}})
+        </li>
+      </ul>
+      <div class="show-more" [translate]="'show-more'" *ngIf="openDates && !moreDates"
+           (click)="showDatesFacet(date.length, date)"></div>
+      <div class="show-more" [translate]="'show-less'" *ngIf="openDates && moreDates"
+           (click)="showDatesFacet(4, date)"></div>
+    </div>
+  </div>
+
+  <div class="header">
+    <div (click)="showSources()">
+      <fa-icon [icon]="faDatabase" size="2x"></fa-icon>
+      <p>Źrodło</p>
+      <fa-icon [icon]="faCaretDown" size="1x" class="toggle open" *ngIf="!openSources"></fa-icon>
+      <fa-icon [icon]="faCaretUp" size="1x" class="toggle close" *ngIf="openSources"></fa-icon>
+    </div>
+    <div class="result-one">
+      <ul class="fa-ul facet" *ngIf="openSources">
+        <li (click)="letsCheck(source.key)" *ngFor="let source of sourceFacet | keyvalue">
+        <span class="fa-li">
+          <fa-icon [icon]="faCheckSquare" *ngIf="stringContain(source.key)" class="checked"></fa-icon>
+          <fa-icon [icon]="faSquare" *ngIf="!stringContain(source.key)" class="not-checked"></fa-icon>
+        </span> {{ source.value.displayName }} ({{source.value.count}})
+        </li>
+      </ul>
+      <div class="show-more" *ngIf="openSources && !moreSources" (click)="showSourcesFacet(source.length, source)">
+        <span [translate]="'show-more'" *ngIf="source.length >=4"></span>
+      </div>
+      <div class="show-more" *ngIf="openSources && moreSources" (click)="showSourcesFacet(4, source)">
+        <span [translate]="'show-less'" *ngIf="source.length >=4"></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
